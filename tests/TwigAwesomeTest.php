@@ -3,10 +3,13 @@
 namespace Rabus\TwigAwesomeBundle;
 
 use PHPUnit\Framework\TestCase;
-use Rabus\TwigAwesomeBundle\Twig\FaExtension;
-use Rabus\TwigAwesomeBundle\Twig\FaTokenParser;
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Symfony\Bundle\TwigBundle\TwigBundle;
+use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpKernel\Kernel;
 use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
 class TwigAwesomeTest extends TestCase
 {
@@ -20,17 +23,47 @@ class TwigAwesomeTest extends TestCase
         );
     }
 
+    protected function tearDown()
+    {
+        $fs = new Filesystem();
+        $fs->remove(__DIR__.'/temp');
+    }
+
     private function createTwigInstance(): Environment
     {
-        $twig = new Environment(new FilesystemLoader(['fixtures'], __DIR__));
-        $twig->addExtension(
-            new FaExtension(
-                new FaTokenParser(
-                    new IconLocator(dirname(__DIR__).'/vendor/fortawesome/font-awesome')
-                )
-            )
-        );
+        $fs = new Filesystem();
+        $fs->remove(__DIR__.'/temp');
 
-        return $twig;
+        $kernel = new class('prod', false) extends Kernel {
+            public function registerBundles()
+            {
+                return [new FrameworkBundle(), new TwigBundle(), new TwigAwesomeBundle()];
+            }
+
+            public function registerContainerConfiguration(LoaderInterface $loader)
+            {
+                $loader->load(function (ContainerBuilder $container) use ($loader) {
+                    $container->loadFromExtension('framework', [
+                        'secret' => 'foo',
+                    ]);
+                    $container->loadFromExtension('twig', [
+                        'default_path' => __DIR__.'/fixtures',
+                    ]);
+                });
+            }
+
+            public function getRootDir()
+            {
+                if (!$this->rootDir) {
+                    $this->rootDir = __DIR__.'/temp';
+                }
+
+                return parent::getRootDir();
+            }
+        };
+
+        $kernel->boot();
+
+        return $kernel->getContainer()->get('twig');
     }
 }

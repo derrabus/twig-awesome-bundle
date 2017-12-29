@@ -16,16 +16,19 @@
         "php": "^7.1",
         "ext-xmlreader": "*",
         "ext-xmlwriter": "*",
-        "twig/twig": "^2.4 || ^3",
         "fortawesome/font-awesome": "^4.7",
-        "symfony/http-kernel": "^3.3 || ^4",
+        "psr/log": "^1",
         "symfony/dependency-injection": "^3.3 || ^4",
+        "symfony/http-kernel": "^3.3 || ^4",
         "symfony/polyfill-mbstring": "^1",
-        "psr/log": "^1"
+        "twig/twig": "^2.4 || ^3"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.3",
         "phpunit/phpunit": "^6",
-        "friendsofphp/php-cs-fixer": "^2.3"
+        "symfony/filesystem": "^3.3 || ^4",
+        "symfony/framework-bundle": "^3.3 || ^4",
+        "symfony/twig-bundle": "^3.3 || ^4"
     },
     "license": "MIT",
     "authors": [
@@ -33,5 +36,8 @@
             "name": "Alexander M. Turek",
             "email": "me@derrabus.de"
         }
-    ]
+    ],
+    "config": {
+        "sort-packages": true
+    }
 }
