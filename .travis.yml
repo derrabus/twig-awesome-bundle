@@ -7,11 +7,12 @@ php:
 matrix:
   include:
     - php: 7.1
-      env: DEPENDENCIES=beta
+      env: DEPENDENCIES=low
+    - php: 7.2
+      env: DEPENDENCIES=dev
 
 before_install:
-  - if [ "$DEPENDENCIES" = "beta" ]; then composer config minimum-stability beta; fi;
+  - if [ "$DEPENDENCIES" = "dev" ]; then composer config minimum-stability dev; fi;
 
 install:
-  - composer self-update
-  - composer install
+  - if [ "$DEPENDENCIES" = "low" ]; then composer install --prefer-lowest; else composer install; fi;
