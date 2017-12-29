@@ -28,7 +28,7 @@
         "phpunit/phpunit": "^6",
         "symfony/filesystem": "^3.3 || ^4",
         "symfony/framework-bundle": "^3.3 || ^4",
-        "symfony/twig-bundle": "^3.3 || ^4"
+        "symfony/twig-bundle": "^3.4 || ^4"
     },
     "license": "MIT",
     "authors": [
