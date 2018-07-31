@@ -2,13 +2,13 @@
 
 namespace Rabus\TwigAwesomeBundle\DependencyInjection;
 
-use Psr\Log\LoggerInterface;
 use Rabus\TwigAwesomeBundle\Exception\RuntimeException;
 use Rabus\TwigAwesomeBundle\IconLocator;
 use Rabus\TwigAwesomeBundle\Twig\FaExtension;
 use Rabus\TwigAwesomeBundle\Twig\FaTokenParser;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
@@ -21,19 +21,16 @@ class TwigAwesomeExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $container->register(IconLocator::class)
-            ->setPublic(false)
-            ->setArgument('$fontAwesomePath', $this->determineFaPath())
-            ->addMethodCall('setLogger', [new Reference(LoggerInterface::class, ContainerInterface::IGNORE_ON_INVALID_REFERENCE)]);
+        $iconLocator = (new Definition(IconLocator::class, [$this->determineFaPath()]))
+            ->addMethodCall('setLogger', [new Reference('logger', ContainerInterface::IGNORE_ON_INVALID_REFERENCE)]);
 
-        $container->register(FaTokenParser::class)
-            ->setPublic(false)
-            ->setAutowired(true);
+        $tokenParser = new Definition(FaTokenParser::class, [$iconLocator]);
 
-        $container->register(FaExtension::class)
+        $container->register('twig_awesome_extension', FaExtension::class)
+            ->setArguments([$tokenParser])
             ->setPublic(false)
-            ->setAutowired(true)
-            ->setAutoconfigured(true);
+            ->addTag('twig.extension')
+        ;
     }
 
     private function determineFaPath(): string
