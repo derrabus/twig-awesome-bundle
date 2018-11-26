@@ -13,7 +13,7 @@ use Twig\Environment;
 
 class TwigAwesomeTest extends TestCase
 {
-    public function testNodeIsConvertedToSvg()
+    public function testNodeIsConvertedToSvg(): void
     {
         $twig = $this->createTwigInstance();
 
@@ -23,7 +23,7 @@ class TwigAwesomeTest extends TestCase
         );
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $fs = new Filesystem();
         $fs->remove(__DIR__.'/temp');
@@ -59,6 +59,11 @@ class TwigAwesomeTest extends TestCase
                 }
 
                 return parent::getRootDir();
+            }
+
+            public function getProjectDir()
+            {
+                return __DIR__.'/temp';
             }
         };
 
