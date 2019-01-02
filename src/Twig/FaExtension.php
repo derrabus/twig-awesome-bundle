@@ -4,11 +4,8 @@ namespace Rabus\TwigAwesomeBundle\Twig;
 
 use Twig\Extension\AbstractExtension;
 
-class FaExtension extends AbstractExtension
+final class FaExtension extends AbstractExtension
 {
-    /**
-     * @var FaTokenParser
-     */
     private $tokenParser;
 
     public function __construct(FaTokenParser $tokenParser)
@@ -16,9 +13,6 @@ class FaExtension extends AbstractExtension
         $this->tokenParser = $tokenParser;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTokenParsers(): array
     {
         return [$this->tokenParser];

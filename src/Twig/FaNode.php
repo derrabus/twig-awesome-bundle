@@ -5,7 +5,7 @@ namespace Rabus\TwigAwesomeBundle\Twig;
 use Twig\Compiler;
 use Twig\Node\Node;
 
-class FaNode extends Node
+final class FaNode extends Node
 {
     public function __construct(string $svg, int $lineno = 0, string $tag = null)
     {
@@ -17,10 +17,7 @@ class FaNode extends Node
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function compile(Compiler $compiler)
+    public function compile(Compiler $compiler): void
     {
         $writer = new \XMLWriter();
         $writer->openMemory();

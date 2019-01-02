@@ -6,8 +6,10 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use Rabus\TwigAwesomeBundle\Exception\InvalidArgumentException;
+use Traversable;
+use XMLReader;
 
-class IconLocator implements LoggerAwareInterface
+final class IconLocator implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
@@ -38,7 +40,7 @@ class IconLocator implements LoggerAwareInterface
         return $this->iconCache[$id];
     }
 
-    private function compileCache()
+    private function compileCache(): void
     {
         if (null !== $this->iconCache) {
             return;
@@ -56,13 +58,13 @@ class IconLocator implements LoggerAwareInterface
         }
     }
 
-    private function parseWebfont(): \Traversable
+    private function parseWebfont(): Traversable
     {
-        $reader = new \XMLReader();
+        $reader = new XMLReader();
         $reader->open($this->fontAwesomePath.'/fonts/fontawesome-webfont.svg');
 
         while ($reader->read()) {
-            if ('glyph' !== $reader->name || \XMLReader::ELEMENT !== $reader->nodeType) {
+            if ('glyph' !== $reader->name || XMLReader::ELEMENT !== $reader->nodeType) {
                 continue;
             }
 
@@ -72,7 +74,7 @@ class IconLocator implements LoggerAwareInterface
         $reader->close();
     }
 
-    private function parseLessVariables(): \Traversable
+    private function parseLessVariables(): Traversable
     {
         $file = fopen($this->fontAwesomePath.'/less/variables.less', 'r');
 

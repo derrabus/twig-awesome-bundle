@@ -4,6 +4,6 @@ namespace Rabus\TwigAwesomeBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class TwigAwesomeBundle extends Bundle
+final class TwigAwesomeBundle extends Bundle
 {
 }

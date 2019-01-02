@@ -12,14 +12,11 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-class TwigAwesomeExtension extends Extension
+final class TwigAwesomeExtension extends Extension
 {
-    const PACKAGE_NAME = 'fortawesome/font-awesome';
+    private const PACKAGE_NAME = 'fortawesome/font-awesome';
 
-    /**
-     * {@inheritdoc}
-     */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $iconLocator = (new Definition(IconLocator::class, [$this->determineFaPath()]))
             ->addMethodCall('setLogger', [new Reference('logger', ContainerInterface::IGNORE_ON_INVALID_REFERENCE)]);

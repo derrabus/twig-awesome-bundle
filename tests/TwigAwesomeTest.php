@@ -11,8 +11,20 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\Kernel;
 use Twig\Environment;
 
-class TwigAwesomeTest extends TestCase
+final class TwigAwesomeTest extends TestCase
 {
+    protected function setUp()
+    {
+        $fs = new Filesystem();
+        $fs->remove(__DIR__.'/temp');
+    }
+
+    protected function tearDown(): void
+    {
+        $fs = new Filesystem();
+        $fs->remove(__DIR__.'/temp');
+    }
+
     public function testNodeIsConvertedToSvg(): void
     {
         $twig = $this->createTwigInstance();
@@ -23,17 +35,8 @@ class TwigAwesomeTest extends TestCase
         );
     }
 
-    protected function tearDown(): void
-    {
-        $fs = new Filesystem();
-        $fs->remove(__DIR__.'/temp');
-    }
-
     private function createTwigInstance(): Environment
     {
-        $fs = new Filesystem();
-        $fs->remove(__DIR__.'/temp');
-
         $kernel = new class('prod', false) extends Kernel {
             public function registerBundles()
             {
@@ -52,7 +55,7 @@ class TwigAwesomeTest extends TestCase
                 });
             }
 
-            public function getRootDir()
+            public function getRootDir(): string
             {
                 if (!$this->rootDir) {
                     $this->rootDir = __DIR__.'/temp';
@@ -61,7 +64,7 @@ class TwigAwesomeTest extends TestCase
                 return parent::getRootDir();
             }
 
-            public function getProjectDir()
+            public function getProjectDir(): string
             {
                 return __DIR__.'/temp';
             }
