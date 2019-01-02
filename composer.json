@@ -11,10 +11,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "ext-xmlreader": "*",
-        "ext-xmlwriter": "*",
-        "fortawesome/font-awesome": "^4.7",
-        "psr/log": "^1",
+        "fortawesome/font-awesome": "^5.7",
         "symfony/dependency-injection": "^3.3 || ^4",
         "symfony/http-kernel": "^3.3 || ^4",
         "symfony/polyfill-mbstring": "^1",
