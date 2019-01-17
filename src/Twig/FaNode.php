@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rabus\TwigAwesomeBundle\Twig;
 
 use Twig\Compiler;
@@ -33,6 +35,7 @@ final class FaNode extends Node
         $compiler->addDebugInfo($this)
             ->raw('echo ')
             ->string($writer->outputMemory(true))
-            ->raw(';');
+            ->raw(';')
+        ;
     }
 }

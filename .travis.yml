@@ -3,6 +3,7 @@ language: php
 php:
   - 7.1
   - 7.2
+  - 7.3
 
 matrix:
   include:
@@ -12,7 +13,7 @@ matrix:
       env: DEPENDENCIES=dev
 
 before_install:
-  - if [ "$DEPENDENCIES" = "dev" ]; then composer config minimum-stability dev; composer remove --dev friendsofphp/php-cs-fixer; fi;
+  - if [ "$DEPENDENCIES" = "dev" ]; then composer config minimum-stability dev; fi;
 
 install:
   - if [ "$DEPENDENCIES" = "low" ]; then composer update --prefer-lowest; else composer install; fi;

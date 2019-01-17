@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rabus\TwigAwesomeBundle;
 
 use PHPUnit\Framework\TestCase;
@@ -13,7 +15,7 @@ use Twig\Environment;
 
 final class TwigAwesomeTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $fs = new Filesystem();
         $fs->remove(__DIR__.'/temp');
@@ -43,9 +45,9 @@ final class TwigAwesomeTest extends TestCase
                 return [new FrameworkBundle(), new TwigBundle(), new TwigAwesomeBundle()];
             }
 
-            public function registerContainerConfiguration(LoaderInterface $loader)
+            public function registerContainerConfiguration(LoaderInterface $loader): void
             {
-                $loader->load(function (ContainerBuilder $container) use ($loader) {
+                $loader->load(function (ContainerBuilder $container) use ($loader): void {
                     $container->loadFromExtension('framework', [
                         'secret' => 'foo',
                     ]);

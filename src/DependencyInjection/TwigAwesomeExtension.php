@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rabus\TwigAwesomeBundle\DependencyInjection;
 
 use Rabus\TwigAwesomeBundle\Exception\RuntimeException;
@@ -19,7 +21,8 @@ final class TwigAwesomeExtension extends Extension
     public function load(array $configs, ContainerBuilder $container): void
     {
         $iconLocator = (new Definition(IconLocator::class, [$this->determineFaPath()]))
-            ->addMethodCall('setLogger', [new Reference('logger', ContainerInterface::IGNORE_ON_INVALID_REFERENCE)]);
+            ->addMethodCall('setLogger', [new Reference('logger', ContainerInterface::IGNORE_ON_INVALID_REFERENCE)])
+        ;
 
         $tokenParser = new Definition(FaTokenParser::class, [$iconLocator]);
 
@@ -33,8 +36,8 @@ final class TwigAwesomeExtension extends Extension
     private function determineFaPath(): string
     {
         $guessedPaths = [
-            dirname(__DIR__, 2).DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.self::PACKAGE_NAME,
-            dirname(__DIR__, 4).DIRECTORY_SEPARATOR.self::PACKAGE_NAME,
+            \dirname(__DIR__, 2).\DIRECTORY_SEPARATOR.'vendor'.\DIRECTORY_SEPARATOR.self::PACKAGE_NAME,
+            \dirname(__DIR__, 4).\DIRECTORY_SEPARATOR.self::PACKAGE_NAME,
         ];
 
         foreach ($guessedPaths as $current) {

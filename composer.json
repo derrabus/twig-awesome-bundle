@@ -1,17 +1,14 @@
 {
     "name": "derrabus/twig-awesome-bundle",
-    "description": "Inline FontAwesome icons into Twig templates.",
     "type": "symfony-bundle",
-    "autoload": {
-        "psr-4": {
-            "Rabus\\TwigAwesomeBundle\\": "src"
+    "description": "Inline FontAwesome icons into Twig templates.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexander M. Turek",
+            "email": "me@derrabus.de"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Rabus\\TwigAwesomeBundle\\": "tests"
-        }
-    },
+    ],
     "require": {
         "php": "^7.1",
         "ext-xmlreader": "*",
@@ -24,25 +21,28 @@
         "twig/twig": "^2.4.4"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.3",
+        "friendsofphp/php-cs-fixer": "^2.14",
         "phpunit/phpunit": "^7 || ^8",
         "symfony/filesystem": "^3.3 || ^4",
         "symfony/framework-bundle": "^3.3 || ^4",
         "symfony/twig-bundle": "^3.4 || ^4"
     },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Alexander M. Turek",
-            "email": "me@derrabus.de"
-        }
-    ],
     "config": {
         "sort-packages": true
     },
     "extra": {
         "branch-alias": {
             "dev-master": "2.x-dev"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Rabus\\TwigAwesomeBundle\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rabus\\TwigAwesomeBundle\\": "tests"
         }
     }
 }
