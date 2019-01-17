@@ -1,17 +1,19 @@
+dist: xenial
 language: php
 
 php:
   - 7.1
   - 7.2
-  - 7.3
 
 env:
 
 matrix:
   include:
-    - php: 7.1
+    - php: 7.1.3
       env: DEPENDENCIES=low
     - php: 7.3
+      env: CHECK_CS=1
+    - php: nightly
       env: DEPENDENCIES=dev
 
   allow_failures:
@@ -22,3 +24,7 @@ before_install:
 
 install:
   - if [ "$DEPENDENCIES" = "low" ]; then composer update --prefer-lowest; else composer install; fi;
+
+script:
+  - if [ "$CHECK_CS" = "1" ]; then ./vendor/bin/php-cs-fixer fix --dry-run; fi;
+  - ./vendor/bin/phpunit
