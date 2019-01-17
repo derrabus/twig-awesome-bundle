@@ -70,6 +70,11 @@ final class TwigAwesomeTest extends TestCase
             {
                 return __DIR__.'/temp';
             }
+
+            protected function getContainerClass()
+            {
+                return 'testContainer';
+            }
         };
 
         $kernel->boot();
