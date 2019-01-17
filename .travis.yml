@@ -5,12 +5,17 @@ php:
   - 7.2
   - 7.3
 
+env:
+
 matrix:
   include:
     - php: 7.1
       env: DEPENDENCIES=low
     - php: 7.3
       env: DEPENDENCIES=dev
+
+  allow_failures:
+    - env: DEPENDENCIES=dev
 
 before_install:
   - if [ "$DEPENDENCIES" = "dev" ]; then composer config minimum-stability dev; fi;
