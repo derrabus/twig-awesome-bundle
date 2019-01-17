@@ -1,7 +1,7 @@
 {
     "name": "derrabus/twig-awesome-bundle",
     "description": "Inline FontAwesome icons into Twig templates.",
-    "type": "library",
+    "type": "symfony-bundle",
     "autoload": {
         "psr-4": {
             "Rabus\\TwigAwesomeBundle\\": "src"
