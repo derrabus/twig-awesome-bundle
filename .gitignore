@@ -1,5 +1,6 @@
-.php_cs
-.php_cs.cache
-composer.lock
-tests/temp
-vendor
+/.php_cs
+/.php_cs.cache
+/.phpunit.result.cache
+/composer.lock
+/tests/temp
+/vendor
