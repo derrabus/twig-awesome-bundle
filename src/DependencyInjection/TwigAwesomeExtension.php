@@ -18,8 +18,7 @@ final class TwigAwesomeExtension extends Extension
 
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $iconLocator = (new Definition(IconLocator::class, [$this->determineFaPath()]));
-
+        $iconLocator = new Definition(IconLocator::class, [$this->determineFaPath()]);
         $tokenParser = new Definition(FaTokenParser::class, [$iconLocator]);
 
         $container->register('twig_awesome_extension', FaExtension::class)
