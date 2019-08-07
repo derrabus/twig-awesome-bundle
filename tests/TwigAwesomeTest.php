@@ -47,7 +47,7 @@ final class TwigAwesomeTest extends TestCase
 
             public function registerContainerConfiguration(LoaderInterface $loader): void
             {
-                $loader->load(function (ContainerBuilder $container) use ($loader): void {
+                $loader->load(static function (ContainerBuilder $container): void {
                     $container->loadFromExtension('framework', [
                         'secret' => 'foo',
                     ]);
@@ -57,21 +57,12 @@ final class TwigAwesomeTest extends TestCase
                 });
             }
 
-            public function getRootDir(): string
-            {
-                if (!$this->rootDir) {
-                    $this->rootDir = __DIR__.'/temp';
-                }
-
-                return parent::getRootDir();
-            }
-
             public function getProjectDir(): string
             {
                 return __DIR__.'/temp';
             }
 
-            protected function getContainerClass()
+            protected function getContainerClass(): string
             {
                 return 'testContainer';
             }
