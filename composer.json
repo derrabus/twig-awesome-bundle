@@ -14,7 +14,6 @@
         "fortawesome/font-awesome": "^5.7",
         "symfony/dependency-injection": "^4.3",
         "symfony/http-kernel": "^4.3",
-        "symfony/polyfill-mbstring": "^1",
         "twig/twig": "^2.4.4"
     },
     "require-dev": {
