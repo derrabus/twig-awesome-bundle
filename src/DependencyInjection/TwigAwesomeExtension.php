@@ -9,9 +9,7 @@ use Rabus\TwigAwesomeBundle\IconLocator;
 use Rabus\TwigAwesomeBundle\Twig\FaExtension;
 use Rabus\TwigAwesomeBundle\Twig\FaTokenParser;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 final class TwigAwesomeExtension extends Extension
@@ -20,10 +18,7 @@ final class TwigAwesomeExtension extends Extension
 
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $iconLocator = (new Definition(IconLocator::class, [$this->determineFaPath()]))
-            ->addMethodCall('setLogger', [new Reference('logger', ContainerInterface::IGNORE_ON_INVALID_REFERENCE)])
-        ;
-
+        $iconLocator = new Definition(IconLocator::class, [$this->determineFaPath()]);
         $tokenParser = new Definition(FaTokenParser::class, [$iconLocator]);
 
         $container->register('twig_awesome_extension', FaExtension::class)

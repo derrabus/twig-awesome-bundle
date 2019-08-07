@@ -10,29 +10,26 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "ext-xmlreader": "*",
-        "ext-xmlwriter": "*",
-        "fortawesome/font-awesome": "^4.7",
-        "psr/log": "^1",
-        "symfony/dependency-injection": "^3.3 || ^4",
-        "symfony/http-kernel": "^3.3 || ^4",
+        "php": "^7.2.9",
+        "fortawesome/font-awesome": "^5.7",
+        "symfony/dependency-injection": "^4.3",
+        "symfony/http-kernel": "^4.3",
         "symfony/polyfill-mbstring": "^1",
         "twig/twig": "^2.4.4"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.14",
-        "phpunit/phpunit": "^7 || ^8",
-        "symfony/filesystem": "^3.3 || ^4",
-        "symfony/framework-bundle": "^3.3 || ^4",
-        "symfony/twig-bundle": "^3.4 || ^4"
+        "phpunit/phpunit": "^8",
+        "symfony/filesystem": "^4.3",
+        "symfony/framework-bundle": "^4.3",
+        "symfony/twig-bundle": "^4.3"
     },
     "config": {
         "sort-packages": true
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.x-dev"
+            "dev-master": "3.x-dev"
         }
     },
     "autoload": {

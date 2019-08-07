@@ -22,6 +22,11 @@ final class FaTokenParser extends AbstractTokenParser
     {
         $stream = $this->parser->getStream();
 
+        $collection = $stream
+            ->expect(Token::NAME_TYPE)
+            ->getValue()
+        ;
+
         $faId = str_replace(
             '_',
             '-',
@@ -29,7 +34,7 @@ final class FaTokenParser extends AbstractTokenParser
         );
         $stream->expect(Token::BLOCK_END_TYPE);
 
-        return new FaNode($this->iconLocator->getSvg($faId), $token->getLine(), $this->getTag());
+        return new FaNode($this->iconLocator->getSvg($collection, $faId), $token->getLine(), $this->getTag());
     }
 
     public function getTag(): string
