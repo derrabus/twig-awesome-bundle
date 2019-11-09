@@ -26,11 +26,7 @@ final class IconLocator
         ]);
 
         if (!file_exists($fileName)) {
-            throw new InvalidArgumentException(sprintf(
-                'Could not find the requested glyph: %s of collection %s.',
-                $id,
-                $collection
-            ));
+            throw new InvalidArgumentException(sprintf('Could not find the requested glyph: %s of collection %s.', $id, $collection));
         }
 
         return file_get_contents($fileName);
