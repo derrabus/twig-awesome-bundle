@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": "^7.2.9",
+        "php": "^7.2.9 || ^8",
         "fortawesome/font-awesome": "^5.7",
         "symfony/dependency-injection": "^4.3 || ^5",
         "symfony/http-kernel": "^4.3 || ^5",
@@ -21,6 +21,7 @@
         "phpunit/phpunit": "^8 || ^9",
         "symfony/filesystem": "^4.3 || ^5",
         "symfony/framework-bundle": "^4.3 || ^5",
+        "symfony/phpunit-bridge": "^5.1",
         "symfony/twig-bundle": "^4.3 || ^5"
     },
     "config": {
