@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.1 || ^8",
         "ext-xmlreader": "*",
         "ext-xmlwriter": "*",
         "fortawesome/font-awesome": "^4.7",
@@ -25,6 +25,7 @@
         "phpunit/phpunit": "^7 || ^8 || ^9",
         "symfony/filesystem": "^3.3 || ^4 || ^5",
         "symfony/framework-bundle": "^3.3 || ^4 | ^5",
+        "symfony/phpunit-bridge": "^5.1",
         "symfony/twig-bundle": "^3.4 || ^4 | ^5"
     },
     "config": {

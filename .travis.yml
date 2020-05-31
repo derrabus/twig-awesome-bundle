@@ -2,9 +2,9 @@ dist: bionic
 language: php
 
 php:
-  - '7.1'
   - '7.2'
   - '7.3'
+  - nightly
 
 env: []
 
@@ -12,7 +12,9 @@ matrix:
   include:
     - dist: xenial
       php: '7.1.3'
-      env: DEPENDENCIES=low
+      env: DEPENDENCIES=low SYMFONY_DEPRECATIONS_HELPER=weak
+    - php: '7.1'
+      env: SYMFONY_DEPRECATIONS_HELPER=weak
     - php: '7.4'
       env: CHECK_CS=1
     - php: '7.4'
@@ -23,6 +25,7 @@ matrix:
 
 before_install:
   - if [ "$DEPENDENCIES" = "dev" ]; then composer config minimum-stability dev; fi;
+  - if [ "$TRAVIS_PHP_VERSION" = "nightly" ]; then composer config platform.php 7.4.99; fi;
 
 install:
   - if [ "$DEPENDENCIES" = "low" ]; then composer update --prefer-lowest; else composer install; fi;
