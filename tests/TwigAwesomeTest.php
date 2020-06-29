@@ -40,7 +40,7 @@ final class TwigAwesomeTest extends TestCase
     private function createTwigInstance(): Environment
     {
         $kernel = new class('prod', false) extends Kernel {
-            public function registerBundles()
+            public function registerBundles(): iterable
             {
                 return [new FrameworkBundle(), new TwigBundle(), new TwigAwesomeBundle()];
             }
@@ -54,6 +54,10 @@ final class TwigAwesomeTest extends TestCase
                     $container->loadFromExtension('twig', [
                         'default_path' => __DIR__.'/fixtures',
                     ]);
+
+                    $container->setAlias('test.twig', 'twig')
+                        ->setPublic(true)
+                    ;
                 });
             }
 
@@ -70,6 +74,6 @@ final class TwigAwesomeTest extends TestCase
 
         $kernel->boot();
 
-        return $kernel->getContainer()->get('twig');
+        return $kernel->getContainer()->get('test.twig');
     }
 }
