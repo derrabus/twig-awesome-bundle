@@ -15,9 +15,11 @@ matrix:
       env: DEPENDENCIES=low SYMFONY_DEPRECATIONS_HELPER=weak
     - php: '7.1'
       env: SYMFONY_DEPRECATIONS_HELPER=weak
-    - php: '7.4'
+    - dist: focal
+      php: '7.4'
       env: CHECK_CS=1
-    - php: '7.4'
+    - dist: focal
+      php: '7.4'
       env: DEPENDENCIES=dev
 
   allow_failures:
