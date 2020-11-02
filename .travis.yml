@@ -4,7 +4,7 @@ language: php
 php:
   - '7.2'
   - '7.3'
-  - nightly
+  - '8.0snapshot'
 
 env: []
 
@@ -27,7 +27,7 @@ matrix:
 
 before_install:
   - if [ "$DEPENDENCIES" = "dev" ]; then composer config minimum-stability dev; fi;
-  - if [ "$TRAVIS_PHP_VERSION" = "nightly" ]; then composer config platform.php 7.4.99; fi;
+  - if [ "$CHECK_CS" != "1" ]; then composer remove --dev --no-update friendsofphp/php-cs-fixer ; fi;
 
 install:
   - if [ "$DEPENDENCIES" = "low" ]; then composer update --prefer-lowest; else composer install; fi;
