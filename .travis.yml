@@ -4,7 +4,7 @@ language: php
 php:
   - '7.2'
   - '7.3'
-  - '8.0snapshot'
+  - '7.4'
 
 env: []
 
@@ -14,10 +14,10 @@ matrix:
       php: '7.2.9'
       env: DEPENDENCIES=low SYMFONY_DEPRECATIONS_HELPER=weak
     - dist: focal
-      php: '7.4'
+      php: '8.0'
       env: CHECK_CS=1
     - dist: focal
-      php: '7.4'
+      php: '8.0'
       env: DEPENDENCIES=dev
 
   allow_failures:

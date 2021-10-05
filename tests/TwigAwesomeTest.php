@@ -31,7 +31,7 @@ final class TwigAwesomeTest extends TestCase
     {
         $twig = $this->createTwigInstance();
 
-        $this->assertStringEqualsFile(
+        $this->assertStringMatchesFormatFile(
             __DIR__.'/fixtures/flag.html',
             $twig->render('flag.html.twig')
         );
