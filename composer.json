@@ -14,7 +14,7 @@
         "ext-xmlreader": "*",
         "ext-xmlwriter": "*",
         "fortawesome/font-awesome": "^4.7",
-        "psr/log": "^1",
+        "psr/log": "^1 || ^2",
         "symfony/dependency-injection": "^3.3 || ^4 || ^5",
         "symfony/http-kernel": "^3.3 || ^4 || ^5",
         "symfony/polyfill-mbstring": "^1",
