@@ -47,13 +47,18 @@ final class TwigAwesomeTest extends TestCase
 
             public function registerContainerConfiguration(LoaderInterface $loader): void
             {
-                $loader->load(function (ContainerBuilder $container) use ($loader): void {
-                    $container->loadFromExtension('framework', [
-                        'secret' => 'foo',
-                    ]);
-                    $container->loadFromExtension('twig', [
+                $loader->load(function (ContainerBuilder $container): void {
+                    $container->loadFromExtension('framework', ['secret' => 'foo']);
+
+                    $twigConfig = [
                         'default_path' => __DIR__.'/fixtures',
-                    ]);
+                        'strict_variables' => true,
+                    ];
+                    if (Kernel::VERSION_ID < 50000) {
+                        $twigConfig['exception_controller'] = null;
+                    }
+
+                    $container->loadFromExtension('twig', $twigConfig);
 
                     $container->setAlias('test.twig', 'twig')
                         ->setPublic(true)
@@ -63,11 +68,7 @@ final class TwigAwesomeTest extends TestCase
 
             public function getRootDir(): string
             {
-                if (!$this->rootDir) {
-                    $this->rootDir = __DIR__.'/temp';
-                }
-
-                return parent::getRootDir();
+                return $this->getProjectDir();
             }
 
             public function getProjectDir(): string
@@ -75,7 +76,7 @@ final class TwigAwesomeTest extends TestCase
                 return __DIR__.'/temp';
             }
 
-            protected function getContainerClass()
+            protected function getContainerClass(): string
             {
                 return 'testContainer';
             }
