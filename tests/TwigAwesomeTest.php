@@ -48,12 +48,17 @@ final class TwigAwesomeTest extends TestCase
             public function registerContainerConfiguration(LoaderInterface $loader): void
             {
                 $loader->load(static function (ContainerBuilder $container): void {
-                    $container->loadFromExtension('framework', [
-                        'secret' => 'foo',
-                    ]);
-                    $container->loadFromExtension('twig', [
+                    $container->loadFromExtension('framework', ['secret' => 'foo']);
+
+                    $twigConfig = [
                         'default_path' => __DIR__.'/fixtures',
-                    ]);
+                        'strict_variables' => true,
+                    ];
+                    if (Kernel::VERSION_ID < 50000) {
+                        $twigConfig['exception_controller'] = null;
+                    }
+
+                    $container->loadFromExtension('twig', $twigConfig);
 
                     $container->setAlias('test.twig', 'twig')
                         ->setPublic(true)
