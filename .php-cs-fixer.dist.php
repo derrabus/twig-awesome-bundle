@@ -5,7 +5,7 @@ declare(strict_types=1);
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
-$finder = Finder::create()
+$finder = (new Finder())
     ->in([
         __DIR__.'/src',
         __DIR__.'/tests',
@@ -13,7 +13,7 @@ $finder = Finder::create()
     ->append([__FILE__])
 ;
 
-return Config::create()
+return (new Config())
     ->setFinder($finder)
     ->setUsingCache(true)
     ->setCacheFile(__DIR__.'/.php_cs.cache')
