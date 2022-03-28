@@ -54,9 +54,6 @@ final class TwigAwesomeTest extends TestCase
                         'default_path' => __DIR__.'/fixtures',
                         'strict_variables' => true,
                     ];
-                    if (Kernel::VERSION_ID < 50000) {
-                        $twigConfig['exception_controller'] = null;
-                    }
 
                     $container->loadFromExtension('twig', $twigConfig);
 

@@ -19,7 +19,7 @@ jobs:
                 uses: "shivammathur/setup-php@v2"
                 with:
                     coverage: none
-                    php-version: '8.0'
+                    php-version: '8.1'
                     tools: composer
             -
                 name: Composer
@@ -39,16 +39,13 @@ jobs:
             fail-fast: false
             matrix:
                 php-version:
-                    - '7.2'
-                    - '7.3'
-                    - '8.0'
                     - '8.1'
                 dependencies:
                     - stable
                 include:
-                    - php-version: '7.2.9'
+                    - php-version: '8.1'
                       dependencies: low
-                    - php-version: '7.4'
+                    - php-version: '8.1'
                       dependencies: dev
 
         steps:
@@ -62,9 +59,6 @@ jobs:
                     coverage: "none"
                     php-version: ${{ matrix.php-version }}
                     tools: composer
-            -
-                name: Remove CS Fixer
-                run: composer remove --dev --no-update friendsofphp/php-cs-fixer
             -
                 name: Composer for dev dependencies
                 if: ${{ matrix.dependencies == 'dev' }}

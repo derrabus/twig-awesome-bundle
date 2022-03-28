@@ -8,11 +8,9 @@ use Twig\Extension\AbstractExtension;
 
 final class FaExtension extends AbstractExtension
 {
-    private $tokenParser;
-
-    public function __construct(FaTokenParser $tokenParser)
-    {
-        $this->tokenParser = $tokenParser;
+    public function __construct(
+        private readonly FaTokenParser $tokenParser,
+    ) {
     }
 
     public function getTokenParsers(): array

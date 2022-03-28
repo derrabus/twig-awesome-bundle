@@ -9,11 +9,9 @@ use const DIRECTORY_SEPARATOR;
 
 final class IconLocator
 {
-    private $fontAwesomePath;
-
-    public function __construct(string $fontAwesomePath)
-    {
-        $this->fontAwesomePath = $fontAwesomePath;
+    public function __construct(
+        private readonly string $fontAwesomePath,
+    ) {
     }
 
     public function getSvg(string $collection, string $id): string

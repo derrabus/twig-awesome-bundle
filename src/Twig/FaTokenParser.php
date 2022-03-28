@@ -11,11 +11,9 @@ use Twig\TokenParser\AbstractTokenParser;
 
 final class FaTokenParser extends AbstractTokenParser
 {
-    private $iconLocator;
-
-    public function __construct(IconLocator $iconLocator)
-    {
-        $this->iconLocator = $iconLocator;
+    public function __construct(
+        private readonly IconLocator $iconLocator,
+    ) {
     }
 
     public function parse(Token $token): Node

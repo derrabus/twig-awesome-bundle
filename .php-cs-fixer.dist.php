@@ -19,8 +19,8 @@ return (new Config())
     ->setRules([
         '@Symfony' => true,
         '@Symfony:risky' => true,
-        '@PHP71Migration' => true,
-        '@PHP71Migration:risky' => true,
+        '@PHP81Migration' => true,
+        '@PHP80Migration:risky' => true,
 
         'array_syntax' => ['syntax' => 'short'],
         'ordered_imports' => ['imports_order' => ['class', 'const', 'function']],
