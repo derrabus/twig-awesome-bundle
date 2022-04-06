@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Rabus\TwigAwesomeBundle\DependencyInjection;
 
-use Rabus\TwigAwesomeBundle\Exception\RuntimeException;
+use Composer\InstalledVersions;
 use Rabus\TwigAwesomeBundle\IconLocator;
 use Rabus\TwigAwesomeBundle\Twig\FaExtension;
 use Rabus\TwigAwesomeBundle\Twig\FaTokenParser;
@@ -30,17 +30,6 @@ final class TwigAwesomeExtension extends Extension
 
     private function determineFaPath(): string
     {
-        $guessedPaths = [
-            \dirname(__DIR__, 2).\DIRECTORY_SEPARATOR.'vendor'.\DIRECTORY_SEPARATOR.self::PACKAGE_NAME,
-            \dirname(__DIR__, 4).\DIRECTORY_SEPARATOR.self::PACKAGE_NAME,
-        ];
-
-        foreach ($guessedPaths as $current) {
-            if (file_exists($current)) {
-                return $current;
-            }
-        }
-
-        throw new RuntimeException('Unable to locate FontAwesome.');
+        return realpath(InstalledVersions::getInstallPath(self::PACKAGE_NAME));
     }
 }
