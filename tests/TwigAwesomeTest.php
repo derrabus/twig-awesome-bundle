@@ -76,6 +76,9 @@ final class TwigAwesomeTest extends TestCase
 
         $kernel->boot();
 
-        return $kernel->getContainer()->get('test.twig');
+        $twig = $kernel->getContainer()->get('test.twig');
+        \assert($twig instanceof Environment);
+
+        return $twig;
     }
 }

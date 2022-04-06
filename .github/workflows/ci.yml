@@ -30,6 +30,31 @@ jobs:
                 name: PHP CS Fixer
                 run: 'vendor/bin/php-cs-fixer fix --dry-run'
 
+    static-analysis:
+        name: Static Analysis
+
+        runs-on: ubuntu-latest
+
+        steps:
+            -
+                name: Checkout code
+                uses: 'actions/checkout@v2'
+            -
+                name: Install PHP
+                uses: "shivammathur/setup-php@v2"
+                with:
+                    coverage: none
+                    php-version: '8.1'
+                    tools: composer
+            -
+                name: Composer
+                uses: 'ramsey/composer-install@v1'
+                with:
+                    composer-options: '--no-suggest --no-scripts'
+            -
+                name: PHPStan
+                run: 'vendor/bin/phpstan'
+
     test:
         name: 'PHPUnit ${{ matrix.php-version }}'
 
