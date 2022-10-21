@@ -6,6 +6,7 @@ namespace Rabus\TwigAwesomeBundle;
 
 use Rabus\TwigAwesomeBundle\Exception\InvalidArgumentException;
 use Rabus\TwigAwesomeBundle\Exception\RuntimeException;
+
 use const DIRECTORY_SEPARATOR;
 
 final class IconLocator
