@@ -7,8 +7,6 @@ namespace Rabus\TwigAwesomeBundle;
 use Rabus\TwigAwesomeBundle\Exception\InvalidArgumentException;
 use Rabus\TwigAwesomeBundle\Exception\RuntimeException;
 
-use const DIRECTORY_SEPARATOR;
-
 final class IconLocator
 {
     public function __construct(
@@ -18,7 +16,7 @@ final class IconLocator
 
     public function getSvg(string $collection, string $id): string
     {
-        $fileName = implode(DIRECTORY_SEPARATOR, [
+        $fileName = implode(\DIRECTORY_SEPARATOR, [
             $this->fontAwesomePath,
              'svgs',
             $collection,
