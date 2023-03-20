@@ -48,7 +48,11 @@ final class TwigAwesomeTest extends TestCase
             public function registerContainerConfiguration(LoaderInterface $loader): void
             {
                 $loader->load(static function (ContainerBuilder $container): void {
-                    $container->loadFromExtension('framework', ['secret' => 'foo', 'http_method_override' => false]);
+                    $container->loadFromExtension('framework', [
+                        'secret' => 'foo',
+                        'http_method_override' => false,
+                        'annotations' => ['enabled' => false],
+                    ]);
 
                     $twigConfig = [
                         'default_path' => __DIR__.'/fixtures',
