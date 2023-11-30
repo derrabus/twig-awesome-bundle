@@ -37,7 +37,13 @@ final class TwigAwesomeExtension extends Extension
         $path = InstalledVersions::getInstallPath(self::PACKAGE_NAME)
             ?? throw new RuntimeException('Unable to determine FontAwesome\'s installation path.');
 
-        return realpath($path)
+        $path = realpath($path)
             ?: throw new RuntimeException('Unable to determine FontAwesome\'s installation path.');
+
+        if (is_dir($path.'/free')) {
+            $path .= '/free';
+        }
+
+        return $path;
     }
 }
