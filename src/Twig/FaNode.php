@@ -9,7 +9,7 @@ use Twig\Node\Node;
 
 final class FaNode extends Node
 {
-    public function __construct(string $svg, int $lineno = 0, string $tag = null)
+    public function __construct(string $svg, int $lineno = 0, ?string $tag = null)
     {
         parent::__construct(
             [],
