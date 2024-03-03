@@ -7,10 +7,10 @@ namespace Rabus\TwigAwesomeBundle;
 use Rabus\TwigAwesomeBundle\Exception\InvalidArgumentException;
 use Rabus\TwigAwesomeBundle\Exception\RuntimeException;
 
-final class IconLocator
+final readonly class IconLocator
 {
     public function __construct(
-        private readonly string $fontAwesomePath,
+        private string $fontAwesomePath,
     ) {
     }
 

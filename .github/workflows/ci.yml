@@ -64,13 +64,12 @@ jobs:
             fail-fast: false
             matrix:
                 php-version:
-                    - '8.1'
                     - '8.2'
                     - '8.3'
                 dependencies:
                     - stable
                 include:
-                    - php-version: '8.1'
+                    - php-version: '8.2'
                       dependencies: low
                     - php-version: '8.3'
                       dependencies: dev
