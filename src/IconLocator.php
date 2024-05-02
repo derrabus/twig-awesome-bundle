@@ -18,7 +18,7 @@ final readonly class IconLocator
     {
         $fileName = implode(\DIRECTORY_SEPARATOR, [
             $this->fontAwesomePath,
-             'svgs',
+            'svgs',
             $collection,
             $id.'.svg',
         ]);
