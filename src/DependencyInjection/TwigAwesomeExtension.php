@@ -11,7 +11,7 @@ use Rabus\TwigAwesomeBundle\Twig\FaExtension;
 use Rabus\TwigAwesomeBundle\Twig\FaTokenParser;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\Extension\Extension;
 
 final class TwigAwesomeExtension extends Extension
 {
