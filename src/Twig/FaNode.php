@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Rabus\TwigAwesomeBundle\Twig;
 
+use Twig\Attribute\YieldReady;
 use Twig\Compiler;
 use Twig\Node\Node;
 
+#[YieldReady]
 final class FaNode extends Node
 {
     public function __construct(string $svg, int $lineno = 0, ?string $tag = null)
@@ -22,7 +24,7 @@ final class FaNode extends Node
     public function compile(Compiler $compiler): void
     {
         $compiler->addDebugInfo($this)
-            ->raw('echo ')
+            ->raw('yield ')
             ->string($this->attributes['svg'])
             ->raw(';')
         ;
