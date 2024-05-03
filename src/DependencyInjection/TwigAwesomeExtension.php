@@ -17,9 +17,6 @@ final class TwigAwesomeExtension extends Extension
 {
     private const PACKAGE_NAME = 'fortawesome/font-awesome';
 
-    /**
-     * @param array<string, mixed> $configs
-     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $iconLocator = new Definition(IconLocator::class, [$this->determineFaPath()]);
@@ -37,7 +34,10 @@ final class TwigAwesomeExtension extends Extension
         $path = InstalledVersions::getInstallPath(self::PACKAGE_NAME)
             ?? throw new RuntimeException('Unable to determine FontAwesome\'s installation path.');
 
-        return realpath($path)
-            ?: throw new RuntimeException('Unable to determine FontAwesome\'s installation path.');
+        if (false === $realpath = realpath($path)) {
+            throw new RuntimeException('Unable to determine FontAwesome\'s installation path.');
+        }
+
+        return $realpath;
     }
 }
