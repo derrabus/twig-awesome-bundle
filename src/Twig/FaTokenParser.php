@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Rabus\TwigAwesomeBundle\Twig;
 
 use Rabus\TwigAwesomeBundle\IconLocator;
-use Twig\Node\Node;
+use Twig\Node\TextNode;
 use Twig\Token;
 use Twig\TokenParser\AbstractTokenParser;
 
@@ -16,7 +16,7 @@ final class FaTokenParser extends AbstractTokenParser
     ) {
     }
 
-    public function parse(Token $token): Node
+    public function parse(Token $token): TextNode
     {
         $stream = $this->parser->getStream();
 
@@ -32,7 +32,7 @@ final class FaTokenParser extends AbstractTokenParser
         );
         $stream->expect(Token::BLOCK_END_TYPE);
 
-        return new FaNode($this->iconLocator->getSvg($collection, $faId), $token->getLine(), $this->getTag());
+        return new TextNode($this->iconLocator->getSvg($collection, $faId), $token->getLine());
     }
 
     public function getTag(): string

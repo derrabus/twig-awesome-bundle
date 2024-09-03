@@ -7,7 +7,9 @@ namespace Rabus\TwigAwesomeBundle\Twig;
 use Twig\Attribute\YieldReady;
 use Twig\Compiler;
 use Twig\Node\Node;
+use Twig\Node\TextNode;
 
+/** @deprecated use {@see TextNode} instead. */
 #[YieldReady]
 final class FaNode extends Node
 {
