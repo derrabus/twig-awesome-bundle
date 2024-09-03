@@ -24,11 +24,11 @@ final readonly class IconLocator
         ]);
 
         if (!file_exists($fileName)) {
-            throw new InvalidArgumentException(sprintf('Could not find the requested glyph: %s of collection %s.', $id, $collection));
+            throw new InvalidArgumentException(\sprintf('Could not find the requested glyph: %s of collection %s.', $id, $collection));
         }
 
         if (false === $svg = file_get_contents($fileName)) {
-            throw new RuntimeException(sprintf('Could not read the requested glyph: %s of collection %s.', $id, $collection));
+            throw new RuntimeException(\sprintf('Could not read the requested glyph: %s of collection %s.', $id, $collection));
         }
 
         return $svg;
