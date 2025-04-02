@@ -27,7 +27,7 @@ final class FaNode extends Node
     {
         $compiler->addDebugInfo($this)
             ->raw('yield ')
-            ->string($this->attributes['svg'])
+            ->string($this->attributes['svg']) // @phpstan-ignore offsetAccess.nonOffsetAccessible, argument.type
             ->raw(';')
         ;
     }
