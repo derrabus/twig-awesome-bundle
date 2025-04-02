@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Rabus\TwigAwesomeBundle\Twig;
 
 use Rabus\TwigAwesomeBundle\IconLocator;
+use Twig\Error\SyntaxError;
 use Twig\Node\TextNode;
 use Twig\Token;
 use Twig\TokenParser\AbstractTokenParser;
+use Twig\TokenStream;
 
 final class FaTokenParser extends AbstractTokenParser
 {
@@ -20,16 +22,9 @@ final class FaTokenParser extends AbstractTokenParser
     {
         $stream = $this->parser->getStream();
 
-        $collection = $stream
-            ->expect(Token::NAME_TYPE)
-            ->getValue()
-        ;
+        $collection = $this->parseNameToken($stream);
+        $faId = str_replace('_', '-', $this->parseNameToken($stream));
 
-        $faId = str_replace(
-            '_',
-            '-',
-            $stream->expect(Token::NAME_TYPE)->getValue()
-        );
         $stream->expect(Token::BLOCK_END_TYPE);
 
         return new TextNode($this->iconLocator->getSvg($collection, $faId), $token->getLine());
@@ -38,5 +33,16 @@ final class FaTokenParser extends AbstractTokenParser
     public function getTag(): string
     {
         return 'fa';
+    }
+
+    /** @throws SyntaxError */
+    private function parseNameToken(TokenStream $stream): string
+    {
+        $token = $stream->expect(Token::NAME_TYPE)->getValue();
+        if (!\is_string($token)) {
+            throw new \UnexpectedValueException(\sprintf('Expected a string token, got %s"', get_debug_type($token)));
+        }
+
+        return $token;
     }
 }
