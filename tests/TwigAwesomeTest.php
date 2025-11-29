@@ -51,7 +51,6 @@ final class TwigAwesomeTest extends TestCase
                     $container->loadFromExtension('framework', [
                         'secret' => 'foo',
                         'http_method_override' => false,
-                        'annotations' => ['enabled' => false],
                     ]);
 
                     $twigConfig = [
