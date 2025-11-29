@@ -13,17 +13,17 @@ jobs:
         steps:
             -
                 name: Checkout code
-                uses: 'actions/checkout@v4'
+                uses: 'actions/checkout@v6'
             -
                 name: Install PHP
                 uses: "shivammathur/setup-php@v2"
                 with:
                     coverage: none
-                    php-version: '8.3'
+                    php-version: '8.4'
                     tools: composer
             -
                 name: Composer
-                uses: 'ramsey/composer-install@v2'
+                uses: 'ramsey/composer-install@v3'
                 with:
                     composer-options: '--no-suggest --no-scripts'
             -
@@ -38,17 +38,17 @@ jobs:
         steps:
             -
                 name: Checkout code
-                uses: 'actions/checkout@v4'
+                uses: 'actions/checkout@v6'
             -
                 name: Install PHP
                 uses: "shivammathur/setup-php@v2"
                 with:
                     coverage: none
-                    php-version: '8.3'
+                    php-version: '8.5'
                     tools: composer
             -
                 name: Composer
-                uses: 'ramsey/composer-install@v2'
+                uses: 'ramsey/composer-install@v3'
                 with:
                     composer-options: '--no-suggest --no-scripts'
             -
@@ -66,18 +66,20 @@ jobs:
                 php-version:
                     - '8.2'
                     - '8.3'
+                    - '8.4'
+                    - '8.5'
                 dependencies:
                     - stable
                 include:
                     - php-version: '8.2'
                       dependencies: low
-                    - php-version: '8.3'
+                    - php-version: '8.5'
                       dependencies: dev
 
         steps:
             -
                 name: Checkout
-                uses: actions/checkout@v4
+                uses: actions/checkout@v6
             -
                 name: Setup PHP
                 uses: shivammathur/setup-php@v2
