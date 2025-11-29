@@ -5,13 +5,18 @@ declare(strict_types=1);
 namespace Rabus\TwigAwesomeBundle;
 
 use Rabus\TwigAwesomeBundle\Exception\InvalidArgumentException;
-use Rabus\TwigAwesomeBundle\Exception\RuntimeException;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+use Symfony\Component\Filesystem\Filesystem;
 
 final readonly class IconLocator
 {
     public function __construct(
         private string $fontAwesomePath,
+        private Filesystem $filesystem = new Filesystem(),
     ) {
+        if (\func_num_args() < 2) {
+            trigger_deprecation('derrabus/twig-awesome-bundle', '4.5', 'Not passing an instance of %s as second argument when constructing %s is deprecated.', Filesystem::class, self::class);
+        }
     }
 
     public function getSvg(string $collection, string $id): string
@@ -23,14 +28,10 @@ final readonly class IconLocator
             $id.'.svg',
         ]);
 
-        if (!file_exists($fileName)) {
-            throw new InvalidArgumentException(\sprintf('Could not find the requested glyph: %s of collection %s.', $id, $collection));
+        try {
+            return $this->filesystem->readFile($fileName);
+        } catch (IOExceptionInterface $e) {
+            throw new InvalidArgumentException(\sprintf('Could not find the requested glyph: %s of collection %s.', $id, $collection), previous: $e);
         }
-
-        if (false === $svg = file_get_contents($fileName)) {
-            throw new RuntimeException(\sprintf('Could not read the requested glyph: %s of collection %s.', $id, $collection));
-        }
-
-        return $svg;
     }
 }
