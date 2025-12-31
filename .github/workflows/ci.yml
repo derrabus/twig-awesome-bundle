@@ -73,7 +73,7 @@ jobs:
                 include:
                     - php-version: '8.2'
                       dependencies: low
-                    - php-version: '8.5'
+                    - php-version: '8.6'
                       dependencies: dev
 
         steps:
