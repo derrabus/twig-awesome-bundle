@@ -1,6 +1,6 @@
 # Twig Awesome Bundle
 
-This bundle integrates the icon font [Font Awesome 6](http://fontawesome.io/) into Twig. But instead of using CSS to
+This bundle integrates the icon font [Font Awesome](http://fontawesome.io/) into Twig. But instead of using CSS to
 render icons on the frontend, the icons are rendered as SVG images directly into the compiled Twig template.
 
 ## Example
