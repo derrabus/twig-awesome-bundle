@@ -5,7 +5,7 @@ declare(strict_types=1);
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
-$finder = (new Finder())
+$finder = new Finder()
     ->in([
         __DIR__.'/src',
         __DIR__.'/tests',
@@ -13,13 +13,13 @@ $finder = (new Finder())
     ->append([__FILE__])
 ;
 
-return (new Config())
+return new Config()
     ->setFinder($finder)
     ->setUsingCache(true)
     ->setRules([
         '@Symfony' => true,
         '@Symfony:risky' => true,
-        '@PHP82Migration' => true,
+        '@PHP84Migration' => true,
         '@PHP82Migration:risky' => true,
 
         'array_syntax' => ['syntax' => 'short'],

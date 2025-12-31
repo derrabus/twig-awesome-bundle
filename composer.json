@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">= 8.2",
+        "php": ">= 8.4",
         "composer-runtime-api": "^2.1",
         "fortawesome/font-awesome": "^6.7 || ^7.1",
         "symfony/dependency-injection": "^7.2 || ^8",
@@ -27,8 +27,19 @@
         "phpstan/phpstan-phpunit": "^2",
         "phpstan/phpstan-strict-rules": "^2",
         "phpunit/phpunit": "^11.5.15",
+        "symfony/cache-contracts": "^3.4.2",
+        "symfony/config": "^7.2 || ^8",
+        "symfony/console": "^7.2 || ^8",
+        "symfony/error-handler": "^7.2 || ^8",
+        "symfony/event-dispatcher": "^7.2 || ^8",
+        "symfony/event-dispatcher-contracts": ">= 3.4.2",
         "symfony/framework-bundle": "^7.2 || ^8",
-        "symfony/twig-bundle": "^7.2 || ^8"
+        "symfony/stopwatch": "^7.2 || ^8",
+        "symfony/string": "^7.2 || ^8",
+        "symfony/translation-contracts": "^3.4.2",
+        "symfony/twig-bridge": "^7.2 || ^8",
+        "symfony/twig-bundle": "^7.2 || ^8",
+        "symfony/var-exporter": "^7.2 || ^8"
     },
     "config": {
         "allow-plugins": {
