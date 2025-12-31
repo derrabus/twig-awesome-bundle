@@ -25,7 +25,7 @@
         "phpstan/phpstan-deprecation-rules": "^2",
         "phpstan/phpstan-phpunit": "^2",
         "phpstan/phpstan-strict-rules": "^2",
-        "phpunit/phpunit": "^11.5.15",
+        "phpunit/phpunit": "^12.5.4",
         "symfony/cache-contracts": "^3.4.2",
         "symfony/config": "^7.2 || ^8",
         "symfony/console": "^7.2 || ^8",
