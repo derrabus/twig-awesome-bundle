@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
-         backupGlobals="false"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
          colors="true"
          bootstrap="tests/bootstrap.php"
          failOnRisky="true"
          failOnWarning="true"
+         failOnNotice="true"
          failOnDeprecation="true"
+         failOnPhpunitNotice="true"
+         failOnPhpunitDeprecation="true"
          cacheDirectory=".phpunit.cache">
     <php>
         <ini name="error_reporting" value="-1" />
@@ -20,6 +22,9 @@
     </testsuites>
 
     <source ignoreSuppressionOfDeprecations="true">
+        <deprecationTrigger>
+            <function>trigger_deprecation</function>
+        </deprecationTrigger>
         <include><directory>src</directory></include>
     </source>
 
