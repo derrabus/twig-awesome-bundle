@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 final class TwigAwesomeExtension extends Extension
 {
-    private const PACKAGE_NAME = 'fortawesome/font-awesome';
+    private const string PACKAGE_NAME = 'fortawesome/font-awesome';
 
     public function load(array $configs, ContainerBuilder $container): void
     {
