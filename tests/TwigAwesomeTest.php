@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Rabus\TwigAwesomeBundle;
 
-use Composer\InstalledVersions;
-use Composer\Semver\VersionParser;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
@@ -29,27 +27,9 @@ final class TwigAwesomeTest extends TestCase
         $fs->remove(__DIR__.'/temp');
     }
 
-    public function testNodeIsConvertedToSvgLegacy(): void
-    {
-        $twig = $this->createTwigInstance();
-
-        if (!self::isFontAwesome6()) {
-            self::markTestSkipped('This test is for FontAwesome 6.7 only.');
-        }
-
-        self::assertStringMatchesFormatFile(
-            __DIR__.'/fixtures/flag-6.7.html',
-            $twig->render('flag.html.twig')
-        );
-    }
-
     public function testNodeIsConvertedToSvg(): void
     {
         $twig = $this->createTwigInstance();
-
-        if (self::isFontAwesome6()) {
-            self::markTestSkipped('This test is for FontAwesome 7.1 or newer only.');
-        }
 
         self::assertStringMatchesFormatFile(
             __DIR__.'/fixtures/flag-7.1.html',
@@ -103,10 +83,5 @@ final class TwigAwesomeTest extends TestCase
         \assert($twig instanceof Environment);
 
         return $twig;
-    }
-
-    private static function isFontAwesome6(): bool
-    {
-        return InstalledVersions::satisfies(new VersionParser(), 'fortawesome/font-awesome', '^6.7');
     }
 }
