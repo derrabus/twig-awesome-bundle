@@ -16,7 +16,7 @@
         "symfony/dependency-injection": "^8",
         "symfony/filesystem": "^8",
         "symfony/http-kernel": "^8",
-        "twig/twig": "^3.21"
+        "twig/twig": "^3.21 || ^4"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.95.15",
