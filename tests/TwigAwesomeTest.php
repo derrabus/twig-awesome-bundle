@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Kernel\BundleInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\Kernel;
 use Twig\Environment;
@@ -40,6 +41,7 @@ final class TwigAwesomeTest extends TestCase
     private function createTwigInstance(): Environment
     {
         $kernel = new class('prod', false) extends Kernel {
+            // @phpstan-ignore return.deprecatedInterface (this has to be solved upstream)
             public function registerBundles(): iterable
             {
                 return [new FrameworkBundle(), new TwigBundle(), new TwigAwesomeBundle()];
