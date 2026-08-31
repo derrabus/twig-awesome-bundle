@@ -28,7 +28,6 @@ return new Config()
         'method_chaining_indentation' => true,
         'multiline_whitespace_before_semicolons' => ['strategy' => 'new_line_for_chained_calls'],
         'phpdoc_order' => true,
-        'visibility_required' => ['elements' => ['property', 'method', 'const']],
     ])
     ->setRiskyAllowed(true)
 ;
