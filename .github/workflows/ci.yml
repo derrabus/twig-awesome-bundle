@@ -19,7 +19,7 @@ jobs:
                 uses: "shivammathur/setup-php@v2"
                 with:
                     coverage: none
-                    php-version: '8.4'
+                    php-version: '8.5'
                     tools: composer
             -
                 name: Composer
@@ -44,7 +44,7 @@ jobs:
                 uses: "shivammathur/setup-php@v2"
                 with:
                     coverage: none
-                    php-version: '8.5'
+                    php-version: '8.6'
                     tools: composer
             -
                 name: Composer
@@ -66,12 +66,13 @@ jobs:
                 php-version:
                     - '8.4'
                     - '8.5'
+                    - '8.6'
                 dependencies:
                     - stable
                 include:
                     - php-version: '8.4'
                       dependencies: low
-                    - php-version: '8.6'
+                    - php-version: '8.7'
                       dependencies: dev
 
         steps:
@@ -88,7 +89,7 @@ jobs:
             -
                 name: Composer for dev dependencies
                 if: ${{ matrix.dependencies == 'dev' }}
-                run: composer config minimum-stability dev && composer update
+                run: composer config minimum-stability dev && composer update --ignore-platform-req=php+
             -
                 name: Composer for low dependencies
                 if: ${{ matrix.dependencies == 'low' }}
