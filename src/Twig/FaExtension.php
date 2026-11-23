@@ -13,6 +13,7 @@ final class FaExtension extends AbstractExtension
     ) {
     }
 
+    #[\Override]
     public function getTokenParsers(): array
     {
         return [$this->tokenParser];
