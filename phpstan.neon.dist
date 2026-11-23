@@ -3,6 +3,8 @@ includes:
 
 parameters:
     level: 10
+    checkMissingOverrideMethodAttribute: true
+    checkMissingOverridePropertyAttribute: true
     paths:
         - src
         - tests

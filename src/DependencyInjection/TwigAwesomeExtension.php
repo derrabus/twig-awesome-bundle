@@ -18,6 +18,7 @@ final class TwigAwesomeExtension extends Extension
 {
     private const string PACKAGE_NAME = 'fortawesome/font-awesome';
 
+    #[\Override]
     public function load(array $configs, ContainerBuilder $container): void
     {
         $iconLocator = new Definition(IconLocator::class, [$this->determineFaPath(), new Reference('filesystem')]);

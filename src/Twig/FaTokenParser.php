@@ -18,6 +18,7 @@ final class FaTokenParser extends AbstractTokenParser
     ) {
     }
 
+    #[\Override]
     public function parse(Token $token): TextNode
     {
         $stream = $this->parser->getStream();
@@ -30,6 +31,7 @@ final class FaTokenParser extends AbstractTokenParser
         return new TextNode($this->iconLocator->getSvg($collection, $faId), $token->getLine());
     }
 
+    #[\Override]
     public function getTag(): string
     {
         return 'fa';

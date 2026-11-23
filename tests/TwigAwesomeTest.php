@@ -15,12 +15,14 @@ use Twig\Environment;
 
 final class TwigAwesomeTest extends TestCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         $fs = new Filesystem();
         $fs->remove(__DIR__.'/temp');
     }
 
+    #[\Override]
     protected function tearDown(): void
     {
         $fs = new Filesystem();
@@ -40,12 +42,13 @@ final class TwigAwesomeTest extends TestCase
     private function createTwigInstance(): Environment
     {
         $kernel = new class('prod', false) extends Kernel {
-            // @phpstan-ignore return.deprecatedInterface (this has to be solved upstream)
-            public function registerBundles(): iterable
+            #[\Override]
+            public function registerBundles(): iterable // @phpstan-ignore return.deprecatedInterface
             {
                 return [new FrameworkBundle(), new TwigBundle(), new TwigAwesomeBundle()];
             }
 
+            #[\Override]
             public function registerContainerConfiguration(LoaderInterface $loader): void
             {
                 $loader->load(static function (ContainerBuilder $container): void {
@@ -67,11 +70,13 @@ final class TwigAwesomeTest extends TestCase
                 });
             }
 
+            #[\Override]
             public function getProjectDir(): string
             {
                 return __DIR__.'/temp';
             }
 
+            #[\Override]
             protected function getContainerClass(): string
             {
                 return 'testContainer';
