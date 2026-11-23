@@ -19,13 +19,13 @@
         "twig/twig": "^3.21 || ^4"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.95.24",
+        "friendsofphp/php-cs-fixer": "^3.95.32",
         "phpstan/extension-installer": "^1.4",
-        "phpstan/phpstan": "^2.2.12",
+        "phpstan/phpstan": "^2.3.7",
         "phpstan/phpstan-deprecation-rules": "^2",
         "phpstan/phpstan-phpunit": "^2",
         "phpstan/phpstan-strict-rules": "^2",
-        "phpunit/phpunit": "^13.3.2",
+        "phpunit/phpunit": "^13.4.8",
         "symfony/event-dispatcher-contracts": "^3.7",
         "symfony/framework-bundle": "^8.1",
         "symfony/translation-contracts": "^3.7",
